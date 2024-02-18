@@ -67,8 +67,6 @@ export function extractNumbers(inputArray: string[]): string[] {
   }
 
   if (num.length > 0) numbers.push(num); // Agregar el último número 
-
-  console.log(numbers);
   return numbers;
 }
 
@@ -84,7 +82,6 @@ export function extractOperation(inputArray: string[]): string[] {
     if (regex_op.test(elem)) ops.push(elem);
   }
 
-  console.log(ops.join(","))
   return ops;
 }
 
@@ -97,6 +94,61 @@ export function getSolution(inputArray: string[]): string {
   const numbers = extractNumbers(inputArray);
   const ops = extractOperation(inputArray);
 
+  /**
+   * Dadas 3 strings (un número, una opración y otro número), realizar la operación y regresar el valor
+   */
+  const operate_two = (num1: string, op: string, num2: string): string => {
+    switch (op) {
+      case "+": return Number(num1) + Number(num2) + "";
+      case "-": return Number(num1) - Number(num2) + "";
+      case "*": return Number(num1) * Number(num2) + "";
+      case "/": return Number(num1) / Number(num2) + "";
+      default: return "";
+    }
+  }
 
-  return "";
+  /**
+   * Dada una lista de operaciones, opera los numeros 
+   * Por cada par de números y operación que se realice
+   * Se elimina un número de la lista de número y se elimina una operación de la lista de operaciones 
+   * Esta función NO toma encuenta la prioridad de las operaciones (la realiza en orden)
+   */
+  const operate_many_for = (oprations: string[]) => {
+    let i = 0;
+    while (i < ops.length && ops.length > 0) {
+      if (oprations.includes(ops[i]!)) {
+        const result = operate_two(numbers[i]!, ops[i]!, numbers[i + 1]!);
+        numbers[i] = result;
+        numbers.splice(i + 1, 1);
+        ops.splice(i, 1)
+      } else {
+        i = i + 1;
+      }
+    }
+  }
+  // Se va a suponer que no existen dos operadores seguidos
+  // Y que, por lo menos, hay un número (revisar addToArray)
+  // sin embargo, puede ocurrir el caso 
+  // num op num ... op 
+  // Es decir, termina en operación y no en número 
+  if (ops.length != numbers.length - 1) return "ERROR";
+
+  // Caso mas sencillo: una operación 
+  if (numbers.length === 2)
+    return operate_two(numbers[0]!, ops[0]!, numbers[1]!);
+
+  // En caso de tener mas de una operación 
+  // Primero se debe resolver las operación con prioridad mas alta (* y /)
+  // Y luego las de prioridad más baja (+ y -)
+
+  // Resolver * y / (misma prioridad)
+  if (ops.includes("*") || ops.includes("/")) operate_many_for(["*", "/"]);
+
+  // Resolver +  y - (misma prioridad)
+  if (ops.includes("+") || ops.includes("-")) operate_many_for(["+", "-"]);
+
+  // Al resolver todas las operaciones
+  // La lista de operaciones debe estar vacia 
+  // Y la lista de números debe haber quedado con un solo elemento 
+  return numbers[0]!;
 }
