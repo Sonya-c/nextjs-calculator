@@ -38,14 +38,17 @@ export default function HomePage() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] px-4 text-white">
       <div className="container flex w-96 flex-col items-center justify-center rounded-xl bg-white/10 px-1 py-16 shadow-lg">
         <FlapDisplay
-          chars={"./*-+"}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          chars={Presets.ALPHANUM + "./*-+"}
           length={10}
           value={inputArray.join("")}
           hinge={true}
           className="text-4xl leading-3"
         />
+
         <FlapDisplay
-          // chars={ }
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+          chars={Presets.ALPHANUM}
           length={6}
           value={result}
           hinge={true}
