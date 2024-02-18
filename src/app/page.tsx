@@ -10,7 +10,7 @@ import {
 } from "~/utils/functions";
 
 export default function HomePage() {
-  const [inputArray, setInputArray] = useState([]);
+  const [inputArray, setInputArray] = useState<string[]>([]);
   const [result, setResult] = useState("");
 
   const buttonClass =
@@ -21,7 +21,7 @@ export default function HomePage() {
     setResult("");
   }
 
-  function addCharacter(character) {
+  function addCharacter(character: string) {
     setInputArray(addToArray(inputArray, character));
   }
 
@@ -38,14 +38,14 @@ export default function HomePage() {
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] px-4 text-white">
       <div className="container flex w-96 flex-col items-center justify-center rounded-xl bg-white/10 px-1 py-16 shadow-lg">
         <FlapDisplay
-          chars={Presets.ALPHANUM + "./*-+"}
+          chars={"./*-+"}
           length={10}
           value={inputArray.join("")}
           hinge={true}
           className="text-4xl leading-3"
         />
         <FlapDisplay
-          chars={Presets.ALPHANUM}
+          // chars={ }
           length={6}
           value={result}
           hinge={true}

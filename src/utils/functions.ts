@@ -3,8 +3,9 @@
  * @param {string[]} inputArray
  * @returns string[]
  */
-export function getCleanArray(inputArray) {
+export function getCleanArray(inputArray: string[]): string[] {
   // CODIGO
+  return [];
 }
 
 /**
@@ -12,8 +13,10 @@ export function getCleanArray(inputArray) {
  * @param {string[]} inputArray
  * @returns string[]
  */
-export function deleteLastItem(inputArray) {
+export function deleteLastItem(inputArray: string[]) {
   // CODIGO
+
+  return [];
 }
 
 /**
@@ -22,8 +25,9 @@ export function deleteLastItem(inputArray) {
  * @param {string} character
  * @returns string[]
  */
-export function addToArray(inputArray, character) {
+export function addToArray(inputArray: string[], character: string): string[] {
   // CODIGO
+  return [];
 }
 
 /**
@@ -31,8 +35,9 @@ export function addToArray(inputArray, character) {
  * @param {string[]} inputArray
  * @returns string[]
  */
-export function extractNumbers(inputArray) {
+export function extractNumbers(inputArray: string[]): string[] {
   // CODIGO
+  return [];
 }
 
 /**
@@ -40,15 +45,17 @@ export function extractNumbers(inputArray) {
  * @param {string[]} inputArray
  * @returns string[]
  */
-export function extractOperation(inputArray) {
+export function extractOperation(inputArray: string[]): string[] {
   // CODIGO
+  return [];
 }
 
 /**
  * Recibe el array de entrada y resuelve la operación aritmetica presente en el.
  * @param {string[]} inputArray
- * @returns string[]
+ * @returns string
  */
-export function getSolution(inputArray) {
+export function getSolution(inputArray: string[]): string {
   // CODIGO
+  return "";
 }
